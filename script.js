@@ -26,7 +26,7 @@ const modules = [
             { text: "A Expansão sem Controle de Sistemas de Vigilância" },
             { text: "A Falta de Transparência e Prestação de Contas" }
         ],
-        [cite_start]feedback: "A própria Nina se deparou com sistemas de reconhecimento que não a reconheciam[cite: 29]. [cite_start]Isso a motivou a expandir seu olhar para a **interface entre tecnologia e sociedade** [cite: 30] [cite_start]e estudar os vieses raciais[cite: 30].",
+        feedback: "A própria Nina se deparou com sistemas de reconhecimento que não a reconheciam[cite: 29]. [cite_start]Isso a motivou a expandir seu olhar para a **interface entre tecnologia e sociedade** [cite: 30] [cite_start]e estudar os vieses raciais[cite: 30].",
         action: (index) => {
             // Ação específica para este módulo
         },
@@ -44,7 +44,7 @@ const modules = [
             { text: "Sim, priorizando a 'eficiência' e ignorando a taxa de erro para minorias.", correct: false },
             { text: "Não, o risco de prisões arbitrárias e letalidade policial é inaceitável. [Correta]", correct: true }
         ],
-        [cite_start]feedback: "Você está certo. O caso exemplifica o **racismo algorítmico** [cite: 57] e a falha de transparência. A responsabilidade ética exige que sistemas falhos (e viesados) não sejam implementados em contextos de vida ou morte.",
+        feedback: "Você está certo. O caso exemplifica o **racismo algorítmico** [cite: 57] e a falha de transparência. A responsabilidade ética exige que sistemas falhos (e viesados) não sejam implementados em contextos de vida ou morte.",
         isQuiz: true
     },
     // MÓDULO 3: CASO REAL 2 - A FALHA INSTITUCIONAL
@@ -58,7 +58,7 @@ const modules = [
             { text: "Sim, o lucro e a 'sensação de segurança' superam o risco.", correct: false },
             { text: "Não, a falha técnica (64% de erro) e a violação do ECA/LGPD são inegociáveis. [Correta]", correct: true }
         ],
-        [cite_start]feedback: "Correto. O caso demonstra a falta de conscientização sobre as **limitações técnicas** [cite: 74] e como a **expansão sem controle** leva à violação de direitos fundamentais.",
+        feedback: "Correto. O caso demonstra a falta de conscientização sobre as **limitações técnicas** [cite: 74] e como a **expansão sem controle** leva à violação de direitos fundamentais.",
         isQuiz: true
     },
     // MÓDULO 4: CONCLUSÃO
