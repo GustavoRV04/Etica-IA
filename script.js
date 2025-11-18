@@ -25,7 +25,7 @@ const modules = [
         [cite_start]feedback: "A própria Nina se deparou com sistemas de reconhecimento que não a reconheciam[cite: 29]. [cite_start]Isso a motivou a expandir seu olhar para a **interface entre tecnologia e sociedade** [cite: 30] [cite_start]e estudar os vieses raciais[cite: 30].",
         action: (index) => {
             alert(modules[1].feedback);
-        },
+        }
     },
     // MÓDULO 2: CASO REAL 1 - O FALSO POSITIVO
     {
