@@ -1,6 +1,5 @@
 const app = document.getElementById('app');
 const modal = document.getElementById('modal-referencias');
-// Verifica se o modal existe antes de tentar selecionar o botão de fechar
 const closeBtn = modal ? modal.querySelector('.close-btn') : null; 
 let currentModule = 0;
 let userScore = 0;
@@ -12,10 +11,10 @@ const modules = [
         title: "IA em Foco: Você Trocaria Sua Liberdade por Conveniência?",
         content: `
             <p>Bem-vindo(a) ao manifesto interativo sobre Ética em IA. Explore os riscos da Tecnologia de Reconhecimento Facial (TRF) no Brasil.</p>
-            [cite_start]<p>O debate central, levantado por Nina da Hora, é sobre **Trocar praticidade por vigilância** [cite: 34] [cite_start]e os **Racismo e outros problemas embutidos nas IAs**[cite: 35].</p>
+            <p>O debate central, levantado por Nina da Hora, é sobre **Trocar praticidade por vigilância** e os **Racismo e outros problemas embutidos nas IAs**.</p>
             <button onclick="nextModule()">Iniciar Jornada Ética</button>
         `,
-        isQuiz: false // Adicionado para consistência
+        isQuiz: false
     },
     // MÓDULO 1: O ALERTA DE NINA
     {
@@ -26,55 +25,58 @@ const modules = [
             { text: "A Expansão sem Controle de Sistemas de Vigilância" },
             { text: "A Falta de Transparência e Prestação de Contas" }
         ],
-        // O feedback agora é uma propriedade simples, garantindo a sintaxe correta.
-        [cite_start]feedback: "A própria Nina se deparou com sistemas de reconhecimento que não a reconheciam[cite: 29]. [cite_start]Isso a motivou a expandir seu olhar para a **interface entre tecnologia e sociedade** [cite: 30] [cite_start]e estudar os vieses raciais[cite: 30].",
+        // SINTAXE LIMPA: Sem tags customizadas fora da string
+        feedback: "A própria Nina se deparou com sistemas de reconhecimento que não a reconheciam. Isso a motivou a expandir seu olhar para a **interface entre tecnologia e sociedade** e estudar os vieses raciais.",
         action: (index) => {
             // Ação específica para este módulo
         },
-        isQuiz: false // Não pontua, apenas informa
+        isQuiz: false
     },
     // MÓDULO 2: CASO REAL 1 - O FALSO POSITIVO
     {
         title: "Módulo 2: O Falso Positivo e o Racismo Algorítmico",
         subtitle: "Caso Real: Vigilante Preso Injustamente na Bahia (2022)",
         question: `
-            [cite_start]<p>O sistema de TRF acusa 95% de similaridade com um criminoso[cite: 49]. [cite_start]O **vigilante negro perdeu o emprego** [cite: 54] [cite_start]após 26 dias preso por erro do sistema[cite: 43].</p>
-            [cite_start]<p>Sabendo que **mais de 90% das prisões envolvem pessoas negras** [cite: 12, 58] [cite_start]e o erro chega a **40% para mulheres negras**[cite: 59], como desenvolvedor(a), você liberaria o sistema para uso imediato em segurança pública?</p>
+            <p>O sistema de TRF acusa 95% de similaridade com um criminoso. O **vigilante negro perdeu o emprego** após 26 dias preso por erro do sistema.</p>
+            <p>Sabendo que **mais de 90% das prisões envolvem pessoas negras** e o erro chega a **40% para mulheres negras**, como desenvolvedor(a), você liberaria o sistema para uso imediato em segurança pública?</p>
         `,
         options: [
             { text: "Sim, priorizando a 'eficiência' e ignorando a taxa de erro para minorias.", correct: false },
             { text: "Não, o risco de prisões arbitrárias e letalidade policial é inaceitável. [Correta]", correct: true }
         ],
-        [cite_start]feedback: "Você está certo. O caso exemplifica o **racismo algorítmico** [cite: 57] e a falha de transparência. A responsabilidade ética exige que sistemas falhos (e viesados) não sejam implementados em contextos de vida ou morte.",
-        isQuiz: true // Módulo que pontua
+        // SINTAXE LIMPA
+        feedback: "Você está certo. O caso exemplifica o **racismo algorítmico** e a falha de transparência. A responsabilidade ética exige que sistemas falhos (e viesados) não sejam implementados em contextos de vida ou morte.",
+        isQuiz: true
     },
     // MÓDULO 3: CASO REAL 2 - A FALHA INSTITUCIONAL
     {
         title: "Módulo 3: A Falha Institucional e a Expansão Ilegal",
         subtitle: "Caso Real: Teste do Maracanã (2019)",
         question: `
-            [cite_start]<p>Um teste no Maracanã teve **margem de erro de 64%** (7 de 11 detidos foram erro)[cite: 67]. Como executivo(a), você aceitaria uma parceria para expandir essa TRF para 20 estádios, incluindo o cadastro de **30 mil crianças** (violando o ECA e LGPD) em troca de um contrato multimilionário?</p>
+            <p>Um teste no Maracanã teve **margem de erro de 64%** (7 de 11 detidos foram erro). Como executivo(a), você aceitaria uma parceria para expandir essa TRF para 20 estádios, incluindo o cadastro de **30 mil crianças** (violando o ECA e LGPD) em troca de um contrato multimilionário?</p>
         `,
         options: [
             { text: "Sim, o lucro e a 'sensação de segurança' superam o risco.", correct: false },
             { text: "Não, a falha técnica (64% de erro) e a violação do ECA/LGPD são inegociáveis. [Correta]", correct: true }
         ],
+        // SINTAXE LIMPA
         feedback: "Correto. O caso demonstra a falta de conscientização sobre as **limitações técnicas** e como a **expansão sem controle** leva à violação de direitos fundamentais. A tecnologia não está pronta.",
-        isQuiz: true // Módulo que pontua
+        isQuiz: true
     },
     // MÓDULO 4: CONCLUSÃO
     {
         title: "Módulo 4: Conclusão - Sua Pontuação",
+        // O conteúdo será atualizado dinamicamente
         content: `
             <h2 id="final-score">Resultado da Jornada Ética: Carregando...</h2>
             <h3>Principais Riscos Éticos no Brasil (Resumo)</h3>
             <ul>
-                [cite_start]<li>**Risco de criminalização de populações vulneráveis:** O TRF erra mais com rostos negros e reforça uma dinâmica violenta[cite: 17, 19].</li>
-                [cite_start]<li>**Risco de vigilância política e social:** Usada para monitorar torcidas organizadas e protestos, criando um efeito inibidor sobre a liberdade de manifestação[cite: 14, 15, 16].</li>
-                [cite_start]<li>**Risco institucional de expansão sem controle:** Estados testaram sistemas sem debate público e em parceria com empresas privadas[cite: 21, 23].</li>
-                [cite_start]<li>**Risco democrático:** A TRF pode se tornar instrumento de vigilância massiva contra opositores e movimentos sociais[cite: 25, 26].</li>
+                <li>**Risco de criminalização de populações vulneráveis:** O TRF erra mais com rostos negros e reforça uma dinâmica violenta.</li>
+                <li>**Risco de vigilância política e social:** Usada para monitorar torcidas organizadas e protestos, criando um efeito inibidor sobre a liberdade de manifestação.</li>
+                <li>**Risco institucional de expansão sem controle:** Estados testaram sistemas sem debate público e em parceria com empresas privadas.</li>
+                <li>**Risco democrático:** A TRF pode se tornar instrumento de vigilância massiva contra opositores e movimentos sociais.</li>
             </ul>
-            [cite_start]<p>O desenvolvimento ético exige: questionar os **vieses embutidos**, compreender as **consequências sociais** e assumir a **responsabilidade ética**[cite: 78, 80].</p>
+            <p>O desenvolvimento ético exige: questionar os **vieses embutidos**, compreender as **consequências sociais** e assumir a **responsabilidade ética**.</p>
             <button onclick="showReferences()">Ver Referências e Manifesto</button>
         `,
         isQuiz: false
@@ -98,9 +100,9 @@ function renderModule() {
         
         // Mapeia as opções para botões
         htmlContent += module.options.map((opt, index) => {
-            // Se for um módulo de quiz (Módulos 2 e 3), passa 'true' ou 'false'. Se não, passa 'null'.
             const isCorrectValue = module.isQuiz ? opt.correct : 'null';
             
+            // Certifique-se que o isCorrectValue é passado como string literal ou valor booleano
             return `<button onclick="handleAnswer(${index}, ${isCorrectValue})">${opt.text}</button>`;
         }).join('');
     }
