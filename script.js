@@ -1,4 +1,7 @@
 const app = document.getElementById('app');
+const modal = document.getElementById('modal-referencias');
+// Verifica se o modal existe antes de tentar selecionar o botão de fechar
+const closeBtn = modal ? modal.querySelector('.close-btn') : null; 
 let currentModule = 0;
 let userScore = 0;
 
@@ -6,26 +9,29 @@ let userScore = 0;
 const modules = [
     // MÓDULO 0: INTRODUÇÃO
     {
-        title: "Éticas em IA: Você Trocaria Sua Liberdade por Conveniência?",
+        title: "IA em Foco: Você Trocaria Sua Liberdade por Conveniência?",
         content: `
             <p>Bem-vindo(a) ao manifesto interativo sobre Ética em IA. Explore os riscos da Tecnologia de Reconhecimento Facial (TRF) no Brasil.</p>
             [cite_start]<p>O debate central, levantado por Nina da Hora, é sobre **Trocar praticidade por vigilância** [cite: 34] [cite_start]e os **Racismo e outros problemas embutidos nas IAs**[cite: 35].</p>
             <button onclick="nextModule()">Iniciar Jornada Ética</button>
-        `
+        `,
+        isQuiz: false // Adicionado para consistência
     },
     // MÓDULO 1: O ALERTA DE NINA
     {
         title: "Módulo 1: O Alerta de Nina da Hora",
         question: "Qual a sua maior preocupação com a IA hoje?",
         options: [
-            { text: "O Viés e a Discriminação Algorítmica", score: 0 },
-            { text: "A Expansão sem Controle de Sistemas de Vigilância", score: 0 },
-            { text: "A Falta de Transparência e Prestação de Contas", score: 0 }
+            { text: "O Viés e a Discriminação Algorítmica" },
+            { text: "A Expansão sem Controle de Sistemas de Vigilância" },
+            { text: "A Falta de Transparência e Prestação de Contas" }
         ],
+        // O feedback agora é uma propriedade simples, garantindo a sintaxe correta.
         [cite_start]feedback: "A própria Nina se deparou com sistemas de reconhecimento que não a reconheciam[cite: 29]. [cite_start]Isso a motivou a expandir seu olhar para a **interface entre tecnologia e sociedade** [cite: 30] [cite_start]e estudar os vieses raciais[cite: 30].",
         action: (index) => {
-            alert(modules[1].feedback);
-        }
+            // Ação específica para este módulo
+        },
+        isQuiz: false // Não pontua, apenas informa
     },
     // MÓDULO 2: CASO REAL 1 - O FALSO POSITIVO
     {
@@ -40,36 +46,38 @@ const modules = [
             { text: "Não, o risco de prisões arbitrárias e letalidade policial é inaceitável. [Correta]", correct: true }
         ],
         [cite_start]feedback: "Você está certo. O caso exemplifica o **racismo algorítmico** [cite: 57] e a falha de transparência. A responsabilidade ética exige que sistemas falhos (e viesados) não sejam implementados em contextos de vida ou morte.",
+        isQuiz: true // Módulo que pontua
     },
     // MÓDULO 3: CASO REAL 2 - A FALHA INSTITUCIONAL
     {
         title: "Módulo 3: A Falha Institucional e a Expansão Ilegal",
         subtitle: "Caso Real: Teste do Maracanã (2019)",
         question: `
-            [cite_start]<p>Um teste no Maracanã teve **margem de erro de 64%** (7 de 11 detidos foram erro)[cite: 67].</p>
-            [cite_start]<p>Como executivo(a), você aceitaria uma parceria para expandir essa TRF para 20 estádios, incluindo o cadastro de **30 mil crianças** [cite: 72] (violando o ECA e LGPD) em troca de um contrato multimilionário?</p>
+            [cite_start]<p>Um teste no Maracanã teve **margem de erro de 64%** (7 de 11 detidos foram erro)[cite: 67]. Como executivo(a), você aceitaria uma parceria para expandir essa TRF para 20 estádios, incluindo o cadastro de **30 mil crianças** (violando o ECA e LGPD) em troca de um contrato multimilionário?</p>
         `,
         options: [
             { text: "Sim, o lucro e a 'sensação de segurança' superam o risco.", correct: false },
             { text: "Não, a falha técnica (64% de erro) e a violação do ECA/LGPD são inegociáveis. [Correta]", correct: true }
         ],
-        [cite_start]feedback: "Correto. O caso demonstra a falta de conscientização sobre as **limitações técnicas** [cite: 74] [cite_start]e como a **expansão sem controle** (Risco Institucional) [cite: 21] leva à violação de direitos fundamentais. A tecnologia não está pronta.",
+        feedback: "Correto. O caso demonstra a falta de conscientização sobre as **limitações técnicas** e como a **expansão sem controle** leva à violação de direitos fundamentais. A tecnologia não está pronta.",
+        isQuiz: true // Módulo que pontua
     },
     // MÓDULO 4: CONCLUSÃO
     {
         title: "Módulo 4: Conclusão - Sua Pontuação",
         content: `
-            <p>Você respondeu corretamente a ${userScore} de 2 questões de risco ético.</p>
+            <h2 id="final-score">Resultado da Jornada Ética: Carregando...</h2>
             <h3>Principais Riscos Éticos no Brasil (Resumo)</h3>
             <ul>
                 [cite_start]<li>**Risco de criminalização de populações vulneráveis:** O TRF erra mais com rostos negros e reforça uma dinâmica violenta[cite: 17, 19].</li>
-                [cite_start]<li>**Risco de vigilância política e social:** Usada para monitorar protestos e cria efeito inibidor sobre a liberdade de manifestação[cite: 14, 16].</li>
-                [cite_start]<li>**Risco institucional de expansão sem controle:** Testes sem debate público, muitas vezes em parceria com empresas privadas[cite: 21, 23].</li>
-                [cite_start]<li>**Risco democrático:** Pode se tornar instrumento de vigilância massiva contra opositores e movimentos sociais[cite: 25, 26].</li>
+                [cite_start]<li>**Risco de vigilância política e social:** Usada para monitorar torcidas organizadas e protestos, criando um efeito inibidor sobre a liberdade de manifestação[cite: 14, 15, 16].</li>
+                [cite_start]<li>**Risco institucional de expansão sem controle:** Estados testaram sistemas sem debate público e em parceria com empresas privadas[cite: 21, 23].</li>
+                [cite_start]<li>**Risco democrático:** A TRF pode se tornar instrumento de vigilância massiva contra opositores e movimentos sociais[cite: 25, 26].</li>
             </ul>
-            [cite_start]<p>O desenvolvimento ético exige: questionar os **vieses embutidos** [cite: 80][cite_start], compreender as **consequências sociais** [cite: 80] [cite_start]e assumir a **responsabilidade ética**[cite: 80].</p>
+            [cite_start]<p>O desenvolvimento ético exige: questionar os **vieses embutidos**, compreender as **consequências sociais** e assumir a **responsabilidade ética**[cite: 78, 80].</p>
             <button onclick="showReferences()">Ver Referências e Manifesto</button>
-        `
+        `,
+        isQuiz: false
     }
 ];
 
@@ -90,20 +98,22 @@ function renderModule() {
         
         // Mapeia as opções para botões
         htmlContent += module.options.map((opt, index) => {
-            // O score é 'null' para o Módulo 1 (pergunta sem pontuação)
-            const scoreValue = module.hasOwnProperty('feedback') && module.hasOwnProperty('options') ? (opt.correct ? 1 : 0) : 'null';
+            // Se for um módulo de quiz (Módulos 2 e 3), passa 'true' ou 'false'. Se não, passa 'null'.
+            const isCorrectValue = module.isQuiz ? opt.correct : 'null';
             
-            return `<button onclick="handleAnswer(${index}, ${scoreValue})">${opt.text}</button>`;
+            return `<button onclick="handleAnswer(${index}, ${isCorrectValue})">${opt.text}</button>`;
         }).join('');
     }
 
     htmlContent += `</div>`;
     app.innerHTML = htmlContent;
 
-    // Atualiza a pontuação na conclusão
+    // Lógica específica para atualizar a pontuação no módulo final
     if (currentModule === modules.length - 1) {
-         modules[currentModule].content = modules[currentModule].content.replace(/Você respondeu corretamente a \d+/, `Você respondeu corretamente a ${userScore}`);
-         app.querySelector('p').innerHTML = `Você respondeu corretamente a ${userScore} de 2 questões de risco ético.`;
+         const scoreElement = document.getElementById('final-score');
+         if(scoreElement) {
+             scoreElement.innerHTML = `Resultado da Jornada Ética: Você respondeu corretamente a ${userScore} de 2 questões de risco ético.`;
+         }
     }
 }
 
@@ -116,20 +126,19 @@ function nextModule() {
 }
 
 // Função para lidar com a resposta do usuário
-function handleAnswer(optionIndex, score) {
+function handleAnswer(optionIndex, isCorrect) {
     const module = modules[currentModule];
     
-    // Se a opção tem pontuação (Módulos 2 e 3)
-    if (score !== null) {
-        // Atualiza a pontuação
-        userScore += score;
-        
-        // Feedback específico (opcional: mudar a cor da borda, etc.)
-        alert(`Resposta registrada! ${module.feedback}`);
-
-    } else {
-        // Para a pergunta de introdução (Módulo 1)
-        module.action(optionIndex);
+    // Se for um módulo de quiz (Módulos 2 e 3)
+    if (module.isQuiz) {
+        if (isCorrect === true) {
+            userScore++;
+            alert(`Resposta correta! ${module.feedback}`);
+        } else {
+            alert(`Resposta registrada. ${module.feedback}`);
+        }
+    } else if (currentModule === 1) { // Módulo 1 (Apenas feedback)
+        alert(module.feedback);
     }
     
     nextModule();
@@ -137,25 +146,25 @@ function handleAnswer(optionIndex, score) {
 
 // Função para abrir o modal de referências
 function showReferences() {
-    document.getElementById('modal-referencias').style.display = 'block';
+    if (modal) {
+        modal.style.display = 'block';
+    }
 }
 
-// Adiciona um listener para garantir que o script carregue TUDO antes de começar
+// Inicializa a aplicação e configura os listeners de eventos
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicializa a aplicação
+    // Inicializa a renderização do primeiro módulo
     renderModule();
     
-    // Lógica para fechar o modal
-    const modal = document.getElementById('modal-referencias');
-    const span = document.getElementsByClassName("close-btn")[0];
-
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
+    // Configura os listeners para fechar o modal, se ele existir
+    if (modal && closeBtn) {
+        closeBtn.onclick = function() {
             modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         }
     }
 });
