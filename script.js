@@ -1,3 +1,4 @@
+
 const app = document.getElementById('app');
 const modal = document.getElementById('modal-referencias');
 const closeBtn = modal ? modal.querySelector('.close-btn') : null; 
@@ -11,11 +12,11 @@ const modules = [
         title: "IA em Foco: Você Trocaria Sua Liberdade por Conveniência?",
         content: `
             <p>Bem-vindo(a) ao manifesto interativo sobre Ética em IA. Explore os riscos da Tecnologia de Reconhecimento Facial (TRF) no Brasil.</p>
-            <p>O debate central, levantado por Nina da Hora, é sobre **Trocar praticidade por vigilância** e os **Racismo e outros problemas embutidos nas IAs**.</p>
+            [cite_start]<p>O debate central, levantado por Nina da Hora, é sobre **Trocar praticidade por vigilância** [cite: 34] [cite_start]e os **Racismo e outros problemas embutidos nas IAs**[cite: 35].</p>
             <button onclick="nextModule()">Iniciar Jornada Ética</button>
         `,
         isQuiz: false
-    },
+    }, 
     // MÓDULO 1: O ALERTA DE NINA
     {
         title: "Módulo 1: O Alerta de Nina da Hora",
@@ -25,27 +26,26 @@ const modules = [
             { text: "A Expansão sem Controle de Sistemas de Vigilância" },
             { text: "A Falta de Transparência e Prestação de Contas" }
         ],
-        // SINTAXE LIMPA: Sem tags customizadas fora da string
-        feedback: "A própria Nina se deparou com sistemas de reconhecimento que não a reconheciam. Isso a motivou a expandir seu olhar para a **interface entre tecnologia e sociedade** e estudar os vieses raciais.",
+        // Sintaxe de objeto perfeita: key: value,
+        [cite_start]feedback: "A própria Nina se deparou com sistemas de reconhecimento que não a reconheciam[cite: 29]. [cite_start]Isso a motivou a expandir seu olhar para a **interface entre tecnologia e sociedade** e estudar os vieses raciais[cite: 30].",
         action: (index) => {
             // Ação específica para este módulo
         },
         isQuiz: false
-    },
+    }, //
     // MÓDULO 2: CASO REAL 1 - O FALSO POSITIVO
     {
         title: "Módulo 2: O Falso Positivo e o Racismo Algorítmico",
         subtitle: "Caso Real: Vigilante Preso Injustamente na Bahia (2022)",
         question: `
-            <p>O sistema de TRF acusa 95% de similaridade com um criminoso. O **vigilante negro perdeu o emprego** após 26 dias preso por erro do sistema.</p>
-            <p>Sabendo que **mais de 90% das prisões envolvem pessoas negras** e o erro chega a **40% para mulheres negras**, como desenvolvedor(a), você liberaria o sistema para uso imediato em segurança pública?</p>
+            [cite_start]<p>O sistema de TRF acusa 95% de similaridade com um criminoso[cite: 49]. [cite_start]O **vigilante negro perdeu o emprego** [cite: 54] [cite_start]após 26 dias preso por erro do sistema[cite: 43].</p>
+            [cite_start]<p>Sabendo que **mais de 90% das prisões envolvem pessoas negras** [cite: 12, 58] [cite_start]e o erro chega a **40% para mulheres negras**[cite: 59], como desenvolvedor(a), você liberaria o sistema para uso imediato em segurança pública?</p>
         `,
         options: [
             { text: "Sim, priorizando a 'eficiência' e ignorando a taxa de erro para minorias.", correct: false },
             { text: "Não, o risco de prisões arbitrárias e letalidade policial é inaceitável. [Correta]", correct: true }
         ],
-        // SINTAXE LIMPA
-        feedback: "Você está certo. O caso exemplifica o **racismo algorítmico** e a falha de transparência. A responsabilidade ética exige que sistemas falhos (e viesados) não sejam implementados em contextos de vida ou morte.",
+        [cite_start]feedback: "Você está certo. O caso exemplifica o **racismo algorítmico** [cite: 57] e a falha de transparência. A responsabilidade ética exige que sistemas falhos (e viesados) não sejam implementados em contextos de vida ou morte.",
         isQuiz: true
     },
     // MÓDULO 3: CASO REAL 2 - A FALHA INSTITUCIONAL
@@ -53,35 +53,35 @@ const modules = [
         title: "Módulo 3: A Falha Institucional e a Expansão Ilegal",
         subtitle: "Caso Real: Teste do Maracanã (2019)",
         question: `
-            <p>Um teste no Maracanã teve **margem de erro de 64%** (7 de 11 detidos foram erro). Como executivo(a), você aceitaria uma parceria para expandir essa TRF para 20 estádios, incluindo o cadastro de **30 mil crianças** (violando o ECA e LGPD) em troca de um contrato multimilionário?</p>
+            [cite_start]<p>Um teste no Maracanã teve **margem de erro de 64%** (7 de 11 detidos foram erro)[cite: 66, 67]. [cite_start]Como executivo(a), você aceitaria uma parceria para expandir essa TRF para 20 estádios, incluindo o cadastro de **30 mil crianças** (violando o ECA e LGPD) em troca de um contrato multimilionário[cite: 71, 72]?</p>
         `,
         options: [
             { text: "Sim, o lucro e a 'sensação de segurança' superam o risco.", correct: false },
             { text: "Não, a falha técnica (64% de erro) e a violação do ECA/LGPD são inegociáveis. [Correta]", correct: true }
         ],
-        // SINTAXE LIMPA
-        feedback: "Correto. O caso demonstra a falta de conscientização sobre as **limitações técnicas** e como a **expansão sem controle** leva à violação de direitos fundamentais. A tecnologia não está pronta.",
+        [cite_start]feedback: "Correto. O caso demonstra a falta de conscientização sobre as **limitações técnicas** [cite: 74] e como a **expansão sem controle** leva à violação de direitos fundamentais.",
         isQuiz: true
     },
     // MÓDULO 4: CONCLUSÃO
     {
         title: "Módulo 4: Conclusão - Sua Pontuação",
-        // O conteúdo será atualizado dinamicamente
         content: `
             <h2 id="final-score">Resultado da Jornada Ética: Carregando...</h2>
             <h3>Principais Riscos Éticos no Brasil (Resumo)</h3>
             <ul>
-                <li>**Risco de criminalização de populações vulneráveis:** O TRF erra mais com rostos negros e reforça uma dinâmica violenta.</li>
-                <li>**Risco de vigilância política e social:** Usada para monitorar torcidas organizadas e protestos, criando um efeito inibidor sobre a liberdade de manifestação.</li>
-                <li>**Risco institucional de expansão sem controle:** Estados testaram sistemas sem debate público e em parceria com empresas privadas.</li>
-                <li>**Risco democrático:** A TRF pode se tornar instrumento de vigilância massiva contra opositores e movimentos sociais.</li>
+                [cite_start]<li>**Risco de criminalização de populações vulneráveis:** O TRF erra mais com rostos negros e reforça uma dinâmica violenta[cite: 17, 19].</li>
+                [cite_start]<li>**Risco de vigilância política e social:** Usada para monitorar torcidas organizadas, protestos e blocos de carnaval, criando um efeito inibidor sobre a liberdade de manifestação[cite: 14, 15, 16].</li>
+                [cite_start]<li>**Risco institucional de expansão sem controle:** Estados testaram sistemas em parceria com empresas privadas e sem debate público[cite: 21, 23].</li>
+                [cite_start]<li>**Risco democrático:** A TRF pode se tornar instrumento de vigilância massiva contra opositores, jornalistas ou movimentos sociais[cite: 25, 26].</li>
             </ul>
-            <p>O desenvolvimento ético exige: questionar os **vieses embutidos**, compreender as **consequências sociais** e assumir a **responsabilidade ética**.</p>
+            [cite_start]<p>O desenvolvimento ético exige: questionar os **vieses embutidos**, compreender as **consequências sociais** e assumir a **responsabilidade ética**[cite: 80].</p>
             <button onclick="showReferences()">Ver Referências e Manifesto</button>
         `,
         isQuiz: false
     }
 ];
+
+// ... (O restante do código JavaScript que lida com renderModule, nextModule, etc. é o mesmo e está correto)
 
 // Função para renderizar o módulo atual
 function renderModule() {
