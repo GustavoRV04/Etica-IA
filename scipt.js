@@ -6,72 +6,68 @@ let userScore = 0;
 const modules = [
     // MÓDULO 0: INTRODUÇÃO
     {
-        title: "IA em Foco: Você Trocaria Sua Liberdade por Conveniência?",
+        title: "Éticas em IA: Você Trocaria Sua Liberdade por Conveniência?",
         content: `
             <p>Bem-vindo(a) ao manifesto interativo sobre Ética em IA. Explore os riscos da Tecnologia de Reconhecimento Facial (TRF) no Brasil.</p>
-            <p>O debate central, levantado por Nina da Hora, é sobre **Trocar praticidade por vigilância** e os **Racismo e outros problemas embutidos nas IAs**.</p>
+            [cite_start]<p>O debate central, levantado por Nina da Hora, é sobre **Trocar praticidade por vigilância** [cite: 34] [cite_start]e os **Racismo e outros problemas embutidos nas IAs**[cite: 35].</p>
             <button onclick="nextModule()">Iniciar Jornada Ética</button>
         `
     },
     // MÓDULO 1: O ALERTA DE NINA
     {
         title: "Módulo 1: O Alerta de Nina da Hora",
-        question: "Pergunta Inicial: Qual a sua maior preocupação com a IA hoje?",
+        question: "Qual a sua maior preocupação com a IA hoje?",
         options: [
-            { text: "O Viés e a Discriminação Algorítmica", value: 1 },
-            { text: "A Expansão sem Controle de Sistemas de Vigilância", value: 2 },
-            { text: "A Falta de Transparência e Prestação de Contas", value: 3 }
+            { text: "O Viés e a Discriminação Algorítmica", score: 0 },
+            { text: "A Expansão sem Controle de Sistemas de Vigilância", score: 0 },
+            { text: "A Falta de Transparência e Prestação de Contas", score: 0 }
         ],
-        feedback: "A própria Nina se deparou com sistemas de reconhecimento que não a reconheciam[cite: 29]. Isso a motivou a expandir seu olhar para a **interface entre tecnologia e sociedade**[cite: 30].",
-        citation: "",
-        action: (value) => console.log('Preocupação escolhida:', value) // Apenas loga, não afeta o score
+        [cite_start]feedback: "A própria Nina se deparou com sistemas de reconhecimento que não a reconheciam[cite: 29]. [cite_start]Isso a motivou a expandir seu olhar para a **interface entre tecnologia e sociedade** [cite: 30] [cite_start]e estudar os vieses raciais[cite: 30].",
+        action: (index) => {
+            alert(modules[1].feedback);
+        }
     },
     // MÓDULO 2: CASO REAL 1 - O FALSO POSITIVO
     {
         title: "Módulo 2: O Falso Positivo e o Racismo Algorítmico",
         subtitle: "Caso Real: Vigilante Preso Injustamente na Bahia (2022)",
         question: `
-            <p>O sistema de TRF acusa 95% de similaridade com um criminoso[cite: 49]. O **vigilante negro perdeu o emprego** após 26 dias preso por erro do sistema[cite: 54].</p>
-            <p>Sabendo que **mais de 90% das prisões envolvem pessoas negras**  e o erro chega a **40% para mulheres negras**, como desenvolvedor(a), você liberaria o sistema para uso imediato em segurança pública?</p>
+            [cite_start]<p>O sistema de TRF acusa 95% de similaridade com um criminoso[cite: 49]. [cite_start]O **vigilante negro perdeu o emprego** [cite: 54] [cite_start]após 26 dias preso por erro do sistema[cite: 43].</p>
+            [cite_start]<p>Sabendo que **mais de 90% das prisões envolvem pessoas negras** [cite: 12, 58] [cite_start]e o erro chega a **40% para mulheres negras**[cite: 59], como desenvolvedor(a), você liberaria o sistema para uso imediato em segurança pública?</p>
         `,
         options: [
-            { text: "Sim, priorizando a 'eficiência' e ignorando a taxa de erro para minorias.", score: 0 },
-            { text: "Não, o risco de prisões arbitrárias e letalidade policial é inaceitável.", score: 1 }
+            { text: "Sim, priorizando a 'eficiência' e ignorando a taxa de erro para minorias.", correct: false },
+            { text: "Não, o risco de prisões arbitrárias e letalidade policial é inaceitável. [Correta]", correct: true }
         ],
-        feedback: "Você está certo. O caso exemplifica o **racismo algorítmico** e a falha de transparência. A responsabilidade ética exige que sistemas falhos (e viesados) não sejam implementados em contextos de vida ou morte. O risco democrático é real[cite: 25].",
-        citation: "[cite: 12, 54, 58, 59]",
-        action: (score) => userScore += score
+        [cite_start]feedback: "Você está certo. O caso exemplifica o **racismo algorítmico** [cite: 57] e a falha de transparência. A responsabilidade ética exige que sistemas falhos (e viesados) não sejam implementados em contextos de vida ou morte.",
     },
     // MÓDULO 3: CASO REAL 2 - A FALHA INSTITUCIONAL
     {
         title: "Módulo 3: A Falha Institucional e a Expansão Ilegal",
         subtitle: "Caso Real: Teste do Maracanã (2019)",
         question: `
-            <p>Um teste no Maracanã teve **margem de erro de 64%** (7 de 11 detidos foram erro).</p>
-            <p>Como executivo(a), você aceitaria uma parceria para expandir essa TRF para 20 estádios, incluindo o cadastro de **30 mil crianças**  (violando o ECA e LGPD) em troca de um contrato multimilionário?</p>
+            [cite_start]<p>Um teste no Maracanã teve **margem de erro de 64%** (7 de 11 detidos foram erro)[cite: 67].</p>
+            [cite_start]<p>Como executivo(a), você aceitaria uma parceria para expandir essa TRF para 20 estádios, incluindo o cadastro de **30 mil crianças** [cite: 72] (violando o ECA e LGPD) em troca de um contrato multimilionário?</p>
         `,
         options: [
-            { text: "Sim, o lucro e a 'sensação de segurança' superam o risco.", score: 0 },
-            { text: "Não, a falha técnica (64% de erro) e a violação do ECA/LGPD são inegociáveis. É um risco democrático.", score: 1 }
+            { text: "Sim, o lucro e a 'sensação de segurança' superam o risco.", correct: false },
+            { text: "Não, a falha técnica (64% de erro) e a violação do ECA/LGPD são inegociáveis. [Correta]", correct: true }
         ],
-        feedback: "Correto. O caso demonstra a falta de conscientização sobre as **limitações técnicas** e como a **expansão sem controle** (Risco Institucional) leva à violação de direitos fundamentais. A tecnologia não está pronta[cite: 74].",
-        citation: "[cite: 67, 72, 75]",
-        action: (score) => userScore += score
+        [cite_start]feedback: "Correto. O caso demonstra a falta de conscientização sobre as **limitações técnicas** [cite: 74] [cite_start]e como a **expansão sem controle** (Risco Institucional) [cite: 21] leva à violação de direitos fundamentais. A tecnologia não está pronta.",
     },
     // MÓDULO 4: CONCLUSÃO
     {
         title: "Módulo 4: Conclusão - Sua Pontuação",
         content: `
-            <h2>Resultado da Jornada Ética</h2>
             <p>Você respondeu corretamente a ${userScore} de 2 questões de risco ético.</p>
             <h3>Principais Riscos Éticos no Brasil (Resumo)</h3>
             <ul>
-                <li>**Risco de criminalização de populações vulneráveis:** O TRF erra mais com rostos negros e reforça uma dinâmica violenta[cite: 18, 19].</li>
-                <li>**Risco de vigilância política e social:** Usada para monitorar protestos e cria efeito inibidor sobre a liberdade de manifestação[cite: 15, 16].</li>
-                <li>**Risco institucional de expansão sem controle:** Testes sem debate público, muitas vezes em parceria com empresas privadas[cite: 23].</li>
-                <li>**Risco democrático:** Pode se tornar instrumento de vigilância massiva contra opositores e movimentos sociais[cite: 26].</li>
+                [cite_start]<li>**Risco de criminalização de populações vulneráveis:** O TRF erra mais com rostos negros e reforça uma dinâmica violenta[cite: 17, 19].</li>
+                [cite_start]<li>**Risco de vigilância política e social:** Usada para monitorar protestos e cria efeito inibidor sobre a liberdade de manifestação[cite: 14, 16].</li>
+                [cite_start]<li>**Risco institucional de expansão sem controle:** Testes sem debate público, muitas vezes em parceria com empresas privadas[cite: 21, 23].</li>
+                [cite_start]<li>**Risco democrático:** Pode se tornar instrumento de vigilância massiva contra opositores e movimentos sociais[cite: 25, 26].</li>
             </ul>
-            <p>O desenvolvimento ético exige: questionar os **vieses embutidos**, compreender as **consequências sociais** e assumir a **responsabilidade ética**.</p>
+            [cite_start]<p>O desenvolvimento ético exige: questionar os **vieses embutidos** [cite: 80][cite_start], compreender as **consequências sociais** [cite: 80] [cite_start]e assumir a **responsabilidade ética**[cite: 80].</p>
             <button onclick="showReferences()">Ver Referências e Manifesto</button>
         `
     }
@@ -80,20 +76,35 @@ const modules = [
 // Função para renderizar o módulo atual
 function renderModule() {
     const module = modules[currentModule];
-    app.innerHTML = `
-        <h1>${module.title}</h1>
-        ${module.subtitle ? `<h2>${module.subtitle}</h2>` : ''}
-        <div class="question-box">
-            ${module.content || ''}
-            ${module.question ? `<p><strong>${module.question}</strong></p>` : ''}
-            ${module.options ? module.options.map((opt, index) => `
-                <button onclick="handleAnswer(${index}, ${opt.score !== undefined ? opt.score : 'null'})">
-                    ${opt.text}
-                </button>
-            `).join('') : ''}
-            ${module.citation ? `<span class="citation">${module.citation}</span>` : ''}
-        </div>
-    `;
+    
+    // Configura o conteúdo HTML
+    let htmlContent = `<h1>${module.title}</h1>`;
+    if (module.subtitle) {
+        htmlContent += `<h2>${module.subtitle}</h2>`;
+    }
+    htmlContent += `<div class="question-box">`;
+    htmlContent += module.content || '';
+
+    if (module.question) {
+        htmlContent += `<p><strong>${module.question}</strong></p>`;
+        
+        // Mapeia as opções para botões
+        htmlContent += module.options.map((opt, index) => {
+            // O score é 'null' para o Módulo 1 (pergunta sem pontuação)
+            const scoreValue = module.hasOwnProperty('feedback') && module.hasOwnProperty('options') ? (opt.correct ? 1 : 0) : 'null';
+            
+            return `<button onclick="handleAnswer(${index}, ${scoreValue})">${opt.text}</button>`;
+        }).join('');
+    }
+
+    htmlContent += `</div>`;
+    app.innerHTML = htmlContent;
+
+    // Atualiza a pontuação na conclusão
+    if (currentModule === modules.length - 1) {
+         modules[currentModule].content = modules[currentModule].content.replace(/Você respondeu corretamente a \d+/, `Você respondeu corretamente a ${userScore}`);
+         app.querySelector('p').innerHTML = `Você respondeu corretamente a ${userScore} de 2 questões de risco ético.`;
+    }
 }
 
 // Função para avançar para o próximo módulo
@@ -108,14 +119,17 @@ function nextModule() {
 function handleAnswer(optionIndex, score) {
     const module = modules[currentModule];
     
-    // Se a opção tem pontuação (é uma pergunta de risco)
+    // Se a opção tem pontuação (Módulos 2 e 3)
     if (score !== null) {
-        module.action(score);
+        // Atualiza a pontuação
+        userScore += score;
+        
+        // Feedback específico (opcional: mudar a cor da borda, etc.)
         alert(`Resposta registrada! ${module.feedback}`);
+
     } else {
-        // Para a pergunta de introdução
-        module.action(module.options[optionIndex].value);
-        alert(module.feedback);
+        // Para a pergunta de introdução (Módulo 1)
+        module.action(optionIndex);
     }
     
     nextModule();
@@ -126,10 +140,12 @@ function showReferences() {
     document.getElementById('modal-referencias').style.display = 'block';
 }
 
-// Lógica para fechar o modal
-window.onload = function() {
+// Adiciona um listener para garantir que o script carregue TUDO antes de começar
+document.addEventListener('DOMContentLoaded', () => {
+    // Inicializa a aplicação
     renderModule();
     
+    // Lógica para fechar o modal
     const modal = document.getElementById('modal-referencias');
     const span = document.getElementsByClassName("close-btn")[0];
 
@@ -142,4 +158,4 @@ window.onload = function() {
             modal.style.display = "none";
         }
     }
-}
+});
