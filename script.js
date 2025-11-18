@@ -1,29 +1,27 @@
-
 const app = document.getElementById('app');
 const modal = document.getElementById('modal-referencias');
-const closeBtn = modal ? modal.querySelector('.close-btn') : null;
+const closeBtn = modal ? modal.querySelector('.close-btn') : null; 
 
 let currentModule = 0;
 let userScore = 0;
 
-// ============================================================================
-// MÓDULOS DA APLICAÇÃO
-// ============================================================================
+// ------------------------------------------------------------------------------------
+// MÓDULOS LIMPOS, SEM CITAÇÕES, E COM O NOVO MÓDULO 5
+// ------------------------------------------------------------------------------------
 
 const modules = [
-    // MÓDULO 0
+    // MÓDULO 0: INTRODUÇÃO
     {
         title: "IA em Foco: Você Trocaria Sua Liberdade por Conveniência?",
         content: `
             <p>Bem-vindo(a) ao manifesto interativo sobre Ética em IA. Explore os riscos da Tecnologia de Reconhecimento Facial (TRF) no Brasil.</p>
-            [cite_start]<p>O debate central, levantado por Nina da Hora, é sobre <strong>Trocar praticidade por vigilância</strong> [cite: 34] 
-            [cite_start]e os <strong>Racismo e outros problemas embutidos nas IAs</strong>[cite: 35].</p>
+            <p>O debate central é sobre o impacto da tecnologia na nossa liberdade e como sistemas automatizados podem reforçar desigualdades ou permitir vigilância sem controle.</p>
             <button onclick="nextModule()">Iniciar Jornada Ética</button>
         `,
         isQuiz: false
     },
 
-    // MÓDULO 1
+    // MÓDULO 1: O ALERTA DE NINA
     {
         title: "Módulo 1: O Alerta de Nina da Hora",
         question: "Qual a sua maior preocupação com a IA hoje?",
@@ -32,119 +30,138 @@ const modules = [
             { text: "A Expansão sem Controle de Sistemas de Vigilância" },
             { text: "A Falta de Transparência e Prestação de Contas" }
         ],
-        feedback: `
-            A própria Nina se deparou com sistemas de reconhecimento que não a reconheciam[cite: 29]. 
-            [cite_start]Isso a motivou a expandir seu olhar para a <strong>interface entre tecnologia e sociedade</strong> [cite: 30] 
-            [cite_start]e estudar os vieses raciais[cite: 30].
-        `,
-        action: () => {},
+        feedback: "A pesquisadora Nina da Hora chamou atenção para como sistemas de reconhecimento facial podem falhar mais com pessoas negras e como isso se conecta a desigualdades históricas.",
         isQuiz: false
     },
 
-    // MÓDULO 2
+    // MÓDULO 2: CASO REAL 1 — FALSO POSITIVO
     {
         title: "Módulo 2: O Falso Positivo e o Racismo Algorítmico",
-        subtitle: "Caso Real: Vigilante Preso Injustamente na Bahia (2022)",
+        subtitle: "Caso Real: Vigilante Preso Injustamente na Bahia",
         question: `
-            [cite_start]<p>O sistema de TRF acusa 95% de similaridade com um criminoso[cite: 49]. 
-            [cite_start]O <strong>vigilante negro perdeu o emprego</strong> [cite: 54] 
-            [cite_start]após 26 dias preso por erro do sistema[cite: 43].</p>
-
-            [cite_start]<p>Sabendo que <strong>mais de 90% das prisões envolvem pessoas negras</strong> [cite: 12, 58] 
-            [cite_start]e que o erro chega a <strong>40% para mulheres negras</strong>[cite: 59], como desenvolvedor(a), 
-            você liberaria o sistema para uso imediato em segurança pública?</p>
+            <p>Um sistema de reconhecimento facial identificou erroneamente um vigilante como criminoso procurado. Ele perdeu o emprego e ficou preso por semanas devido ao erro do algoritmo.</p>
+            <p>Sabendo que erros desse tipo atingem desproporcionalmente pessoas negras, você autorizaria o uso desse sistema em segurança pública?</p>
         `,
         options: [
-            { text: "Sim, priorizando a 'eficiência' e ignorando a taxa de erro para minorias.", correct: false },
-            { text: "Não, o risco de prisões arbitrárias e letalidade policial é inaceitável. [Correta]", correct: true }
+            { text: "Sim, priorizando eficiência mesmo com riscos.", correct: false },
+            { text: "Não, o risco de prisões injustas é inaceitável. [Correta]", correct: true }
         ],
-        feedback: `
-            Você está certo. O caso exemplifica o <strong>racismo algorítmico</strong> [cite: 57] e a falha de transparência. 
-            A responsabilidade ética exige que sistemas falhos e viesados não sejam implementados em contextos de vida ou morte.
-        `,
+        feedback: "Esse caso exemplifica o impacto de sistemas enviesados e como erros podem destruir vidas. Tecnologias com alto potencial de dano exigem extrema responsabilidade.",
         isQuiz: true
     },
 
-    // MÓDULO 3
+    // MÓDULO 3: CASO REAL 2 — FALHA INSTITUCIONAL
     {
         title: "Módulo 3: A Falha Institucional e a Expansão Ilegal",
-        subtitle: "Caso Real: Teste do Maracanã (2019)",
+        subtitle: "Caso Real: Testes no Maracanã",
         question: `
-            [cite_start]<p>Um teste no Maracanã teve <strong>margem de erro de 64%</strong>[cite: 67]. 
-            [cite_start]Como executivo(a), você aceitaria uma parceria para expandir essa TRF para 20 estádios, incluindo 
-            o cadastro de <strong>30 mil crianças</strong> (violando o ECA e a LGPD) [cite: 72], em troca de um contrato multimilionário?</p>
+            <p>Um teste em estádio apresentou margens de erro elevadíssimas, mas mesmo assim houve propostas de expansão para outros locais, incluindo cadastro de crianças sem consentimento adequado.</p>
+            <p>Como gestor(a), você aceitaria expandir o sistema para dezenas de estádios?</p>
         `,
         options: [
-            { text: "Sim, o lucro e a 'sensação de segurança' superam o risco.", correct: false },
-            { text: "Não, a falha técnica (64% de erro) e a violação do ECA/LGPD são inegociáveis. [Correta]", correct: true }
+            { text: "Sim, priorizando lucro e sensação de segurança.", correct: false },
+            { text: "Não, a combinação de falhas técnicas e riscos legais é inaceitável. [Correta]", correct: true }
         ],
-        feedback: `
-            Correto. O caso demonstra a falta de consciência sobre as <strong>limitações técnicas</strong> [cite: 74] e como 
-            a <strong>expansão sem controle</strong> leva à violação de direitos fundamentais.
-        `,
+        feedback: "Sistemas falhos usados em escala nacional podem gerar riscos legais, sociais e institucionais graves. Decisões éticas devem considerar impacto coletivo.",
         isQuiz: true
     },
 
-    // MÓDULO 4 – CONCLUSÃO
+    // MÓDULO 4: CONCLUSÃO
     {
         title: "Módulo 4: Conclusão - Sua Pontuação",
         content: `
             <h2 id="final-score">Resultado da Jornada Ética: Carregando...</h2>
-
-            <h3>Principais Riscos Éticos no Brasil (Resumo)</h3>
+            <h3>Principais Riscos Éticos no Brasil</h3>
             <ul>
-                <li>[cite_start]<strong>Criminalização de populações vulneráveis:</strong> O TRF erra mais com rostos negros e reforça uma dinâmica violenta[cite: 17, 19].</li>
-                <li>[cite_start]<strong>Vigilância política e social:</strong> Usado para monitorar torcidas, protestos e blocos de carnaval[cite: 14, 15, 16].</li>
-                <li>[cite_start]<strong>Expansão institucional sem controle:</strong> Estados testaram sistemas sem debate público[cite: 21, 23].</li>
-                <li>[cite_start]<strong>Risco democrático:</strong> Possibilidade de vigilância massiva contra opositores, jornalistas e movimentos sociais[cite: 26].</li>
+                <li>Risco de criminalização injusta de populações vulneráveis.</li>
+                <li>Possibilidade de vigilância política e social sem controle.</li>
+                <li>Expansão institucional de tecnologias opacas.</li>
+                <li>Risco democrático de monitoramento de opositores ou movimentos sociais.</li>
+            </ul>
+            <p>O desenvolvimento ético exige compreender riscos, analisar impactos e assumir responsabilidades sociais e técnicas.</p>
+            <button onclick="nextModule()">Avançar</button>
+        `,
+        isQuiz: false
+    },
+
+    // MÓDULO 5: DECISÃO FINAL
+    {
+        title: "Módulo 5: Decisão Final — A Responsabilidade Está em Suas Mãos",
+        subtitle: "Reflexão Ética Aplicada",
+        content: `
+            <p>Agora que você entendeu os principais riscos, chegou o momento decisivo.</p>
+
+            <p>Imagine que você deve emitir um parecer final recomendando ou não a adoção de um sistema nacional de reconhecimento facial.</p>
+
+            <p>Considere:</p>
+            <ul>
+                <li>Margens de erro e impactos sociais;</li>
+                <li>Vigilância em massa e privacidade;</li>
+                <li>Riscos institucionais e legais;</li>
+                <li>Consequências caso o sistema falhe.</li>
             </ul>
 
-            [cite_start]<p>O desenvolvimento ético exige: questionar os <strong>vieses embutidos</strong> [cite: 80], 
-            compreender as <strong>consequências sociais</strong> [cite: 80] e assumir a 
-            <strong>responsabilidade ética</strong>[cite: 80].</p>
+            <p><strong>Qual é sua decisão final?</strong></p>
 
-            <button onclick="showReferences()">Ver Referências e Manifesto</button>
+            <button onclick="handleFinalDecision('nao')">Recomendo NÃO implementar</button>
+            <button onclick="handleFinalDecision('talvez')">Implementar apenas com salvaguardas fortes</button>
+            <button onclick="handleFinalDecision('sim')">Recomendo implementar</button>
         `,
         isQuiz: false
     }
 ];
 
-// ============================================================================
-// FUNÇÕES PRINCIPAIS
-// ============================================================================
+// ------------------------------------------------------------------------------------
+// RENDERIZAÇÃO
+// ------------------------------------------------------------------------------------
 
 function renderModule() {
     const module = modules[currentModule];
+    
+    let htmlContent = `<h1>${module.title}</h1>`;
 
-    let html = `<h1>${module.title}</h1>`;
-    if (module.subtitle) html += `<h2>${module.subtitle}</h2>`;
-
-    html += `<div class="question-box">`;
-    if (module.content) html += module.content;
-
-    if (module.question) {
-        html += `<p><strong>${module.question}</strong></p>`;
-        html += module.options.map((opt, index) => {
-            const val = module.isQuiz ? opt.correct : "null";
-            return `<button onclick="handleAnswer(${index}, ${val})">${opt.text}</button>`;
-        }).join("");
+    if (module.subtitle) {
+        htmlContent += `<h2>${module.subtitle}</h2>`;
     }
 
-    html += `</div>`;
-    app.innerHTML = html;
+    htmlContent += `<div class="question-box">`;
+    htmlContent += module.content || '';
 
-    if (currentModule === modules.length - 1) {
-        const scoreElement = document.getElementById("final-score");
+    if (module.question) {
+        htmlContent += `<p><strong>${module.question}</strong></p>`;
+        
+        htmlContent += module.options.map((opt, index) => {
+            const isCorrectValue = module.isQuiz ? opt.correct : 'null';
+            return `<button onclick="handleAnswer(${index}, ${isCorrectValue})">${opt.text}</button>`;
+        }).join('');
+    }
+
+    htmlContent += `</div>`;
+    app.innerHTML = htmlContent;
+
+    if (currentModule === modules.length - 2) {
+        const scoreElement = document.getElementById('final-score');
         if (scoreElement) {
-            scoreElement.innerHTML = `Resultado da Jornada Ética: Você acertou ${userScore} de 2 questões.`;
+            scoreElement.innerHTML = 
+                `Resultado da Jornada Ética: Você respondeu corretamente a ${userScore} de 2 questões.`;
         }
     }
 }
 
+// ------------------------------------------------------------------------------------
+// NAVEGAÇÃO
+// ------------------------------------------------------------------------------------
+
 function nextModule() {
     currentModule++;
-    if (currentModule < modules.length) renderModule();
+    if (currentModule < modules.length) {
+        renderModule();
+    }
 }
+
+// ------------------------------------------------------------------------------------
+// QUIZ
+// ------------------------------------------------------------------------------------
 
 function handleAnswer(optionIndex, isCorrect) {
     const module = modules[currentModule];
@@ -159,26 +176,48 @@ function handleAnswer(optionIndex, isCorrect) {
     } else if (currentModule === 1) {
         alert(module.feedback);
     }
+    
+    nextModule();
+}
+
+// ------------------------------------------------------------------------------------
+// DECISÃO FINAL DO MÓDULO 5
+// ------------------------------------------------------------------------------------
+
+function handleFinalDecision(decision) {
+    if (decision === "nao") {
+        alert("Você decidiu não implementar. Uma postura alinhada à proteção de direitos fundamentais.");
+    } else if (decision === "talvez") {
+        alert("Você recomendou implementar com salvaguardas. Isso exige auditorias, transparência e controle público.");
+    } else {
+        alert("Você recomendou implementar. Essa decisão carrega grande responsabilidade ética e institucional.");
+    }
 
     nextModule();
 }
 
+// ------------------------------------------------------------------------------------
+// MODAL
+// ------------------------------------------------------------------------------------
+
 function showReferences() {
-    if (modal) modal.style.display = "block";
+    if (modal) {
+        modal.style.display = 'block';
+    }
 }
 
-// ============================================================================
-// INICIALIZAÇÃO
-// ============================================================================
-
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
     renderModule();
 
     if (modal && closeBtn) {
         closeBtn.onclick = () => modal.style.display = "none";
 
-        window.onclick = event => {
-            if (event.target === modal) modal.style.display = "none";
+        window.onclick = (event) => {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         };
     }
 });
+
+
