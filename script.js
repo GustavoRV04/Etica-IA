@@ -5,7 +5,7 @@ const closeBtn = modal ? modal.querySelector('.close-btn') : null;
 let currentModule = 0;
 let userScore = 0;
 
-// Lista de módulos e conteúdo
+// A PARTIR DESTA LINHA, SUBSTITUA A DEFINIÇÃO COMPLETA DE const modules = [...] NO SEU script.js:
 const modules = [
     // MÓDULO 0: INTRODUÇÃO
     {
@@ -16,7 +16,7 @@ const modules = [
             <button onclick="nextModule()">Iniciar Jornada Ética</button>
         `,
         isQuiz: false
-    }, 
+    },
     // MÓDULO 1: O ALERTA DE NINA
     {
         title: "Módulo 1: O Alerta de Nina da Hora",
@@ -26,13 +26,12 @@ const modules = [
             { text: "A Expansão sem Controle de Sistemas de Vigilância" },
             { text: "A Falta de Transparência e Prestação de Contas" }
         ],
-        // Sintaxe de objeto perfeita: key: value,
-        [cite_start]feedback: "A própria Nina se deparou com sistemas de reconhecimento que não a reconheciam[cite: 29]. [cite_start]Isso a motivou a expandir seu olhar para a **interface entre tecnologia e sociedade** e estudar os vieses raciais[cite: 30].",
+        [cite_start]feedback: "A própria Nina se deparou com sistemas de reconhecimento que não a reconheciam[cite: 29]. [cite_start]Isso a motivou a expandir seu olhar para a **interface entre tecnologia e sociedade** [cite: 30] [cite_start]e estudar os vieses raciais[cite: 30].",
         action: (index) => {
             // Ação específica para este módulo
         },
         isQuiz: false
-    }, //
+    },
     // MÓDULO 2: CASO REAL 1 - O FALSO POSITIVO
     {
         title: "Módulo 2: O Falso Positivo e o Racismo Algorítmico",
@@ -53,7 +52,7 @@ const modules = [
         title: "Módulo 3: A Falha Institucional e a Expansão Ilegal",
         subtitle: "Caso Real: Teste do Maracanã (2019)",
         question: `
-            [cite_start]<p>Um teste no Maracanã teve **margem de erro de 64%** (7 de 11 detidos foram erro)[cite: 66, 67]. [cite_start]Como executivo(a), você aceitaria uma parceria para expandir essa TRF para 20 estádios, incluindo o cadastro de **30 mil crianças** (violando o ECA e LGPD) em troca de um contrato multimilionário[cite: 71, 72]?</p>
+            [cite_start]<p>Um teste no Maracanã teve **margem de erro de 64%**[cite: 67]. [cite_start]Como executivo(a), você aceitaria uma parceria para expandir essa TRF para 20 estádios, incluindo o cadastro de **30 mil crianças** (violando o ECA e LGPD) [cite: 72] em troca de um contrato multimilionário?</p>
         `,
         options: [
             { text: "Sim, o lucro e a 'sensação de segurança' superam o risco.", correct: false },
@@ -72,16 +71,15 @@ const modules = [
                 [cite_start]<li>**Risco de criminalização de populações vulneráveis:** O TRF erra mais com rostos negros e reforça uma dinâmica violenta[cite: 17, 19].</li>
                 [cite_start]<li>**Risco de vigilância política e social:** Usada para monitorar torcidas organizadas, protestos e blocos de carnaval, criando um efeito inibidor sobre a liberdade de manifestação[cite: 14, 15, 16].</li>
                 [cite_start]<li>**Risco institucional de expansão sem controle:** Estados testaram sistemas em parceria com empresas privadas e sem debate público[cite: 21, 23].</li>
-                [cite_start]<li>**Risco democrático:** A TRF pode se tornar instrumento de vigilância massiva contra opositores, jornalistas ou movimentos sociais[cite: 25, 26].</li>
+                [cite_start]<li>**Risco democrático:** A TRF pode se tornar instrumento de vigilância massiva contra opositores, jornalistas ou movimentos sociais[cite: 26].</li>
             </ul>
-            [cite_start]<p>O desenvolvimento ético exige: questionar os **vieses embutidos**, compreender as **consequências sociais** e assumir a **responsabilidade ética**[cite: 80].</p>
+            [cite_start]<p>O desenvolvimento ético exige: questionar os **vieses embutidos** [cite: 80][cite_start], compreender as **consequências sociais** [cite: 80] [cite_start]e assumir a **responsabilidade ética**[cite: 80].</p>
             <button onclick="showReferences()">Ver Referências e Manifesto</button>
         `,
         isQuiz: false
     }
 ];
 
-// ... (O restante do código JavaScript que lida com renderModule, nextModule, etc. é o mesmo e está correto)
 
 // Função para renderizar o módulo atual
 function renderModule() {
