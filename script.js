@@ -184,10 +184,6 @@ function nextModule() {
         renderModule();
     }
 
-    // Quando TERMINAR o último módulo -> mostrar referências
-    if (currentModule === modules.length - 1) {
-        openReferenciasModal();
-    }
 }
 
 
@@ -224,8 +220,8 @@ function handleFinalDecision(decision) {
     } else {
         alert("Você recomendou implementar. Essa decisão carrega grande responsabilidade ética e institucional.");
     }
+    openReferenciasModal();
 
-    nextModule();
 }
 
 // ------------------------------------------------------------------------------------
