@@ -15,7 +15,8 @@ const modules = [
         title: "IA em Foco: Você Trocaria Sua Liberdade por Conveniência?",
         content: `
             <p>Bem-vindo(a) ao manifesto interativo sobre Ética em IA. Explore os riscos da Tecnologia de Reconhecimento Facial (TRF) no Brasil.</p>
-            <p>O debate central é sobre o impacto da tecnologia na nossa liberdade e como sistemas automatizados podem reforçar desigualdades ou permitir vigilância sem controle.</p>
+            <p>O debate central é sobre o impacto da tecnologia na nossa liberdade/privacidade e como sistemas automatizados podem reforçar desigualdades ou permitir vigilância sem controle.</p>
+            <p>O material principal para o desenvoçvimento deste projeto foi o Podcast Fio da Meada com a convidada Nina da Hora.</p>
             <button onclick="nextModule()">Iniciar Jornada Ética</button>
         `,
         isQuiz: false
