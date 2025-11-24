@@ -66,9 +66,34 @@ const modules = [
         isQuiz: true
     },
 
+    // NOVO MÓDULO 4: POLÊMICA DA META
+{
+    title: "Módulo 4: A Polêmica da IA da Meta",
+    subtitle: "Privacidade, Vazamentos e Riscos de Treinamento",
+    content: `
+        <p>Recentemente, a Meta enfrentou uma forte polêmica envolvendo seu sistema de IA generativa, acusada de utilizar conteúdos pessoais de usuários — incluindo imagens e mensagens — para treinar modelos sem transparência adequada.</p>
+
+        <p>Especialistas alertaram para riscos como:</p>
+        <ul>
+            <li>Uso de dados privados sem consentimento claro;</li>
+            <li>Vazamento de informações sensíveis em respostas da IA;</li>
+            <li>Distorção de vozes, rostos e identidades;</li>
+            <li>Direcionamento político e comportamental baseado no perfil de usuários.</li>
+        </ul>
+
+        <p>Após a polêmica, milhões de pessoas pediram para excluir seus dados dos modelos da Meta.</p>
+
+        <p><strong>Diante disso, qual deveria ser a postura das empresas ao treinar modelos de IA?</strong></p>
+
+        <button onclick="nextModule()">Avançar</button>
+    `,
+    isQuiz: false
+},
+
+
     // MÓDULO 4: CONCLUSÃO
     {
-        title: "Módulo 4: Conclusão - Sua Pontuação",
+        title: "Módulo 5: Conclusão - Sua Pontuação",
         content: `
             <h2 id="final-score">Resultado da Jornada Ética: Carregando...</h2>
             <h3>Principais Riscos Éticos no Brasil</h3>
@@ -86,7 +111,7 @@ const modules = [
 
     // MÓDULO 5: DECISÃO FINAL
     {
-        title: "Módulo 5: Decisão Final — A Responsabilidade Está em Suas Mãos",
+        title: "Módulo 6: Decisão Final — A Responsabilidade Está em Suas Mãos",
         subtitle: "Reflexão Ética Aplicada",
         content: `
             <p>Agora que você entendeu os principais riscos, chegou o momento decisivo.</p>
@@ -157,11 +182,13 @@ function nextModule() {
     if (currentModule < modules.length) {
         renderModule();
     }
+
+    // Quando TERMINAR o último módulo -> mostrar referências
     if (currentModule === modules.length - 1) {
-    openReferenciasModal();
+        openReferenciasModal();
+    }
 }
 
-}
 
 // ------------------------------------------------------------------------------------
 // QUIZ
@@ -185,7 +212,7 @@ function handleAnswer(optionIndex, isCorrect) {
 }
 
 // ------------------------------------------------------------------------------------
-// DECISÃO FINAL DO MÓDULO 5
+// DECISÃO FINAL DO MÓDULO 6
 // ------------------------------------------------------------------------------------
 
 function handleFinalDecision(decision) {
@@ -229,21 +256,28 @@ document.addEventListener('DOMContentLoaded', () => {
 // ------------------------------------------------------------------------------------
 
 function openReferenciasModal() {
-    document.getElementById("modal-referencias").style.display = "block";
+    const modal = document.getElementById("modal-referencias");
+    modal.style.display = "block";
 }
 
 function closeReferenciasModal() {
     document.getElementById("modal-referencias").style.display = "none";
 }
 
-document.querySelector(".close-btn").onclick = closeReferenciasModal;
+document.addEventListener('DOMContentLoaded', () => {
+    renderModule();
 
-window.onclick = function (event) {
     const modal = document.getElementById("modal-referencias");
-    if (event.target === modal) {
-        closeReferenciasModal();
-    }
-};
+    const closeBtn = modal.querySelector(".close-btn");
+
+    closeBtn.onclick = closeReferenciasModal;
+
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            closeReferenciasModal();
+        }
+    };
+});
 
 
 
