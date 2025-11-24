@@ -104,7 +104,7 @@ const modules = [
             <p><strong>Qual é sua decisão final?</strong></p>
 
             <button onclick="handleFinalDecision('nao')">Recomendo NÃO implementar</button>
-            <button onclick="handleFinalDecision('talvez')">Implementar apenas com salvaguardas fortes</button>
+            <button onclick="handleFinalDecision('talvez')">Implementar apenas com supervisão fortes</button>
             <button onclick="handleFinalDecision('sim')">Recomendo implementar</button>
         `,
         isQuiz: false
@@ -157,6 +157,10 @@ function nextModule() {
     if (currentModule < modules.length) {
         renderModule();
     }
+    if (currentModule === modules.length - 1) {
+    openReferenciasModal();
+}
+
 }
 
 // ------------------------------------------------------------------------------------
@@ -188,7 +192,7 @@ function handleFinalDecision(decision) {
     if (decision === "nao") {
         alert("Você decidiu não implementar. Uma postura alinhada à proteção de direitos fundamentais.");
     } else if (decision === "talvez") {
-        alert("Você recomendou implementar com salvaguardas. Isso exige auditorias, transparência e controle público.");
+        alert("Você recomendou implementar com supervisão humana. Isso exige auditorias, transparência e controle público.");
     } else {
         alert("Você recomendou implementar. Essa decisão carrega grande responsabilidade ética e institucional.");
     }
@@ -219,5 +223,27 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 });
+
+// ------------------------------------------------------------------------------------
+// REFERENCIAS
+// ------------------------------------------------------------------------------------
+
+function openReferenciasModal() {
+    document.getElementById("modal-referencias").style.display = "block";
+}
+
+function closeReferenciasModal() {
+    document.getElementById("modal-referencias").style.display = "none";
+}
+
+document.querySelector(".close-btn").onclick = closeReferenciasModal;
+
+window.onclick = function (event) {
+    const modal = document.getElementById("modal-referencias");
+    if (event.target === modal) {
+        closeReferenciasModal();
+    }
+};
+
 
 
