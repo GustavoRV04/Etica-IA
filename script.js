@@ -84,6 +84,7 @@ const modules = [
         <p>Após a polêmica, milhões de pessoas pediram para excluir seus dados dos modelos da Meta.</p>
 
         <p><strong>Diante disso, qual deveria ser a postura das empresas ao treinar modelos de IA?</strong></p>
+        <p><strong>Recomendo fortemente que assista este vídeo sobre os acontecimentos:</strong></p>
 
         <button onclick="nextModule()">Avançar</button>
     `,
