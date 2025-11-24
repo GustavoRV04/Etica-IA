@@ -44,7 +44,7 @@ const modules = [
         `,
         options: [
             { text: "Sim, priorizando eficiência mesmo com riscos.", correct: false },
-            { text: "Não, o risco de prisões injustas é inaceitável. [Correta]", correct: true }
+            { text: "Não, o risco de prisões injustas é inaceitável.", correct: true }
         ],
         feedback: "Esse caso exemplifica o impacto de sistemas enviesados e como erros podem destruir vidas. Tecnologias com alto potencial de dano exigem extrema responsabilidade.",
         isQuiz: true
@@ -60,7 +60,7 @@ const modules = [
         `,
         options: [
             { text: "Sim, priorizando lucro e sensação de segurança.", correct: false },
-            { text: "Não, a combinação de falhas técnicas e riscos legais é inaceitável. [Correta]", correct: true }
+            { text: "Não, a combinação de falhas técnicas e riscos legais é inaceitável.", correct: true }
         ],
         feedback: "Sistemas falhos usados em escala nacional podem gerar riscos legais, sociais e institucionais graves. Decisões éticas devem considerar impacto coletivo.",
         isQuiz: true
